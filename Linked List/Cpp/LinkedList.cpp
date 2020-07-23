@@ -90,6 +90,50 @@ class LinkedList {
     }
   }
 
+  bool find(T data){
+
+    Node<T>* ptr = this->head;
+
+    while(ptr){
+      // works only when Type T has Overload for ==
+      if(ptr.data == data){
+        return true;
+      }
+      ptr = ptr->next;
+
+    }
+    return false;
+  }
+
+  bool remove(T data){
+    // return true for succes and false for error
+    Node<T>* ptr = this->head;
+    Node<T>* prev = nullptr;
+
+    while(ptr){
+      // works only when Type T has Overload for ==
+      if(ptr.data == data){
+
+        if(!prev){
+          this->pop_front();
+        }
+        else {
+          prev->next = ptr->next;
+          delete ptr;
+        }
+
+        return true;
+      }
+      
+      prev = ptr;
+      ptr = ptr->next;
+
+    }
+    return false;
+
+
+  }
+
   void push_back(T data){ // runs in O(n)
      Node<T>* newNode = new Node<T>(data);
 
@@ -111,7 +155,8 @@ class LinkedList {
 
   ~LinkedList(){
     // De Allocate the allocated space
-    const Node<T>* temp = this->head;
+    Node<T>* temp = this->head;
+
     while(head){
       temp = head;
       head = head->next;
