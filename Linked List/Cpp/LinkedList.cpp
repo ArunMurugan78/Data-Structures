@@ -47,7 +47,50 @@ class LinkedList {
     return output;
  }
 
-  void addElement(T data){
+  void push_front(T data){ // adds element in constant Time
+
+       Node<T>* newNode = new Node<T>(data);
+
+       if(!this->head){
+         this->head = newNode;
+       }
+       else {
+         newNode->next = this->head;
+         this->head = newNode;
+       }
+  }
+
+  void pop_front(){
+    if(this->head){
+      Node<T>*temp = this->head;
+      this->head = this->head->next;
+      delete temp;
+    }
+  }
+
+  void pop_back(){
+
+    if(this->head)
+    {
+       Node<T>* ptr = this->head;
+       Node<T>* prev = nullptr;
+
+       while(ptr)
+      {
+          if(!ptr->next)
+          {
+            prev->next = nullptr;
+            delete ptr;
+            break;
+          }
+          prev = ptr;
+          ptr = ptr->next;
+
+     }
+    }
+  }
+
+  void push_back(T data){ // runs in O(n)
      Node<T>* newNode = new Node<T>(data);
 
      Node<T>* ptr = this->head;

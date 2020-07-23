@@ -6,10 +6,10 @@
 
 int main () {
   LinkedList<int> s;
-  s.addElement(10);
-  s.addElement(1);
-  s.addElement(112);
-  s.print();
+  s.push_front(10);
+  s.push_front(1);
+  s.push_front(112);
+
   std::cout<<s;
 
   return 0;
