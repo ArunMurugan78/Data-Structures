@@ -88,6 +88,10 @@ public:
       Node<T> *ptr = this->head;
       Node<T> *prev = nullptr;
 
+      if(!ptr){
+        this.head = nullptr;
+      }
+
       while (ptr)
       {
         if (!ptr->next)

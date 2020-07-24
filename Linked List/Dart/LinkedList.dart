@@ -41,6 +41,9 @@ class LinkedList<Type> {
   void pop_back() {
     Node<Type> ptr = this.head;
     Node<Type> prev = null;
+    if (ptr == null) {
+      this.head = null;
+    }
 
     while (ptr != null) {
       if (ptr.next == null) {
