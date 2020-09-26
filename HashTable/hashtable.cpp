@@ -18,13 +18,16 @@ class HashTable
     float load_factor;
     long long total;
     long long max_capacity;
-    int (*hash_func)(Key);
+    long (*hash_func)(Key);
     int (*probing_func)(int);
 
 public:
     HashTable(
-        int (*func)(Key), int (*probing_func)(int) = [](int idx) { return idx + 1; }, float load_factor = 0.5)
+        long (*func)(Key)=[](Key key){
+            return (long)std::hash<Key>()(key);
+        }, int (*probing_func)(int) = [](int idx) { return idx + 1; }, float load_factor = 0.5,long max_capacity=100)
     {
+        this->max_capacity = max_capacity;
         this->hash_func = func;
         this->probing_func = probing_func;
         this->load_factor = load_factor;

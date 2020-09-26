@@ -2,18 +2,10 @@
 #include "./hashtable.cpp"
 using namespace std;
 
-int hash_string(string s)
-{
-    hash<string> h;
-
-    return h(s);
-}
 
 int main()
 {
-    HashTable<string, int> ht([](string s) {
-        return hash_string(s);
-    });
+    HashTable<string, int> ht;
 
     ht.add("One", 1);
     ht.add("Two", 2);
