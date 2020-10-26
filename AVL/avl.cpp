@@ -19,6 +19,16 @@ class AVL
     Node<T> *root;
 
 protected:
+    void reclaim_memory(Node<T> *ptr)
+    {
+        if(!ptr){
+            return;
+        }
+        reclaim_memory(ptr->left);
+        reclaim_memory(ptr->right);
+        delete ptr;
+
+    }
     bool _contains(Node<T> *ptr, T data)
     {
         if (!ptr)
@@ -73,10 +83,11 @@ protected:
         if (!ptr)
         {
             return new Node<T>(data);
-        } else if (ptr->data==data){
+        }
+        else if (ptr->data == data)
+        {
             return ptr;
         }
-         
 
         if (ptr->data > data)
         {
@@ -155,17 +166,20 @@ protected:
         return right_right_case(ptr);
     }
 
-  
-
 public:
     AVL() : root(nullptr) {}
     void insert(T data)
     {
-        this->root =  _insert(this->root, data);
-    }  
-    
+        this->root = _insert(this->root, data);
+    }
+
     bool contains(T data)
     {
-        return _contains(this->root,data);
+        return _contains(this->root, data);
+    }
+
+    ~AVL()
+    {
+        reclaim_memory(this->root);
     }
 };
