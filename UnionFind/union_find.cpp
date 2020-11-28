@@ -82,6 +82,9 @@ public:
 
     bool find(T data1, T data2)
     {
+        if(ht.find(data1)==ht.end()|| ht.find(data2)==ht.end()){
+            return false;
+        }
         return find_root(data1) == find_root(data2);
     }
 };
